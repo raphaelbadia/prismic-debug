@@ -13,13 +13,13 @@ import * as prismicH from '@prismicio/helpers'
 export default async function handler(req, res) {
   if (req.body.type === 'api-update' && req.body.documents.length > 0) {
     // Check for secret to confirm this is a valid request
-    if (req.body.secret !== process.env.PRISMIC_WEBHOOK_SECRET) {
-      return res.status(401).json({ message: 'Invalid token' })
-    }
+    // if (req.body.secret !== process.env.PRISMIC_WEBHOOK_SECRET) {
+    //   return res.status(401).json({ message: 'Invalid token' })
+    // }
 
     // If you have a `createClient()` function defined elsewhere in
     // your app, use that instead
-    const client = prismic.createClient('your-repo-name')
+    const client = prismic.createClient('debug-vercel')
 
     // Get a list of URLs for any new, updated, or deleted documents
     const documents = await client.getAllByIDs(req.body.documents)
