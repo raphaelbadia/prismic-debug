@@ -24,7 +24,7 @@ export default async function handler(req, res) {
     // Get a list of URLs for any new, updated, or deleted documents
     const documents = await client.getAllByIDs(req.body.documents)
     console.log({documents})
-    const urls = documents.map((doc) => prismicH.asLink(doc))
+    const urls = documents.map((doc) => prismicH.asLink(doc, (doc) => '/' + doc.uid))
 
     try {
       // Revalidate the URLs for those documents
