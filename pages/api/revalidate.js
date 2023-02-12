@@ -20,9 +20,10 @@ export default async function handler(req, res) {
     // If you have a `createClient()` function defined elsewhere in
     // your app, use that instead
     const client = prismic.createClient('debug-vercel')
-
+    console.log(req.body.documents)
     // Get a list of URLs for any new, updated, or deleted documents
     const documents = await client.getAllByIDs(req.body.documents)
+    console.log({documents})
     const urls = documents.map((doc) => prismicH.asLink(doc))
 
     try {
